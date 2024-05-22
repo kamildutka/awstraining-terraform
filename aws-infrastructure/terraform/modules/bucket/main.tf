@@ -1,20 +1,6 @@
 # Sets up an S3 bucket to store the remote states of all modules
 resource "aws_s3_bucket" "remote_state" {
   bucket = var.remote_state_bucket
-  acl = "private"
-
-  versioning {
-    enabled = true
-  }
-
-  lifecycle_rule {
-    id = "delete"
-    enabled = true
-
-    noncurrent_version_expiration {
-      days = 365
-    }
-  }
 
   tags = merge(
     var.common_tags,
@@ -22,15 +8,34 @@ resource "aws_s3_bucket" "remote_state" {
       "Name" = "remote_state_bucket"
     }
   )
+}
 
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
+resource "aws_s3_bucket_versioning" "remote_state_versioning" {
+  bucket = aws_s3_bucket.remote_state.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "remote_state_lifecycle_configuration" {
+  bucket = aws_s3_bucket.remote_state.id
+  rule {
+    id = "delete"
+    status = "Enabled"
+
+    noncurrent_version_expiration {
+      noncurrent_days = 365
     }
   }
+}
 
+resource "aws_s3_bucket_server_side_encryption_configuration" "remote_state_server_side_encryption_configuration" {
+  bucket = aws_s3_bucket.remote_state.id
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
 }
 
 resource "aws_s3_bucket_public_access_block" "public_access" {
