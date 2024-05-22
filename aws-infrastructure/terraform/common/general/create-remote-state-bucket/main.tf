@@ -4,7 +4,7 @@ provider "aws" {
   profile                 = var.profile
 }
 
-module "bucket" {
+module "remote_state_bucket" {
   source = "../../../modules/bucket"
   name = var.name
 }
