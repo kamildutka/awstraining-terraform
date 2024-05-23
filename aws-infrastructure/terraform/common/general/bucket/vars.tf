@@ -4,9 +4,6 @@ variable "region" {
 variable "profile" {
   description = "Default profile id"
 }
-variable "name" {
-  description = "Name of the bucket"
-}
 
 variable "shared_credentials_file" {
   description = "Path to cloud credentials"
