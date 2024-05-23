@@ -6,7 +6,7 @@ provider "aws" {
 
 module "bucket" {
   source = "../../../modules/bucket"
-  name = var.name
+  name = "<<UNIQ_BUCKET_NAME>>"
 }
 
 
