@@ -189,7 +189,6 @@ var.environment             -> emea
 var.profile                 -> backend-test
 var.region                  -> eu-central-1
 var.remote_state_bucket     -> tf-state-backend-test-eu-central-1-<<UNIQUE_BUCKET_STRING>>
-var.shared_credentials_file -> C:\\Users\\<<USERNAME>>\\.aws\\credentials
 ```
 Or use one-liner:
 ```bash
@@ -198,8 +197,7 @@ terraform apply \
   -var='environment=emea' \
   -var='profile=backend-test' \
   -var='region=eu-central-1' \
-  -var='remote_state_bucket=tf-state-backend-test-eu-central-1-<<UNIQUE_BUCKET_STRING>>' \
-  -var='shared_credentials_file=C:\\Users\\<<USERNAME>>\\.aws\\credentials'
+  -var='remote_state_bucket=tf-state-backend-test-eu-central-1-<<UNIQUE_BUCKET_STRING>>'
 ```
 Set ```<<USERNAME>>``` to your CORP ID.
 
