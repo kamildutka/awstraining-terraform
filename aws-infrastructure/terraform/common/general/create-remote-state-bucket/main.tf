@@ -6,7 +6,7 @@ provider "aws" {
 
 module "remote_state_bucket" {
   source = "../../../modules/bucket"
-  name = var.name
+  name = var.remote_state_bucket
 }
 
 

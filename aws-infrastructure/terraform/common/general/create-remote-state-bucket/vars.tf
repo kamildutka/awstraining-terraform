@@ -4,7 +4,7 @@ variable "region" {
 variable "profile" {
   description = "Default profile id"
 }
-variable "name" {
+variable "remote_state_bucket" {
   description = "Name of the bucket"
 }
 
