@@ -75,7 +75,7 @@ fi
 # remove any state from previous runs (possibly on different environments)
 rm common/*/*/.terraform/terraform.tfstate || true
 
-if [ "$ACTION" = "destroy -auto-approve" ]; then
+if [[ "$ACTION" =~ "destroy" ]]; then
   echo "Checking if $TF_STATE_BUCKET exists..."
   if aws s3api head-bucket --bucket $TF_STATE_BUCKET --profile $PROFILE --region $REGION 2>/dev/null; then
     ./$SCRIPT $PROFILE $REGION common/services/measurements-dynamodb $ACTION
@@ -94,7 +94,7 @@ if [ "$ACTION" = "destroy -auto-approve" ]; then
   else
     echo "Skipping destroy - everything was already destroyed!"
   fi
-else
+elif [[ "$ACTION" =~ "apply" ]]; then
   if aws s3api head-bucket --bucket $TF_STATE_BUCKET --profile $PROFILE --region $REGION 2>/dev/null; then
     echo "Skipping remote state bucket creation"
   else
@@ -109,4 +109,6 @@ else
   ./$SCRIPT $PROFILE $REGION common/services/ecs-backend-cluster $ACTION
   ./$SCRIPT $PROFILE $REGION common/services/ecs-backend-service $ACTION
   ./$SCRIPT $PROFILE $REGION common/services/measurements-dynamodb $ACTION
+else
+  echo "ACTION can be either destroy or apply"
 fi
