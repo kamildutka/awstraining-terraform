@@ -8,8 +8,4 @@ variable "name" {
   description = "Name of the bucket"
 }
 
-variable "shared_credentials_file" {
-  description = "Path to cloud credentials"
-}
-
 variable "environment" {}

@@ -10,10 +10,6 @@ variable "profile" {
   description = "Default profile id"
 }
 
-variable "shared_credentials_file" {
-  description = "Path to cloud credentials"
-}
-
 variable "environment" {
   description = "Environment to build"
 }
