@@ -1,11 +1,13 @@
 variable "region" {
   description = "Region to launch configuration in"
 }
+
 variable "profile" {
   description = "Default profile id"
 }
+
 variable "remote_state_bucket" {
-  description = "Name of the bucket"
+  description = "Remote state bucket for saving state"
 }
 
 variable "shared_credentials_file" {
@@ -13,3 +15,6 @@ variable "shared_credentials_file" {
 }
 
 variable "environment" {}
+variable "common_tags" {
+  type = map(string)
+}

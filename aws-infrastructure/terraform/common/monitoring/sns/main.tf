@@ -20,9 +20,12 @@ data "terraform_remote_state" "globals" {
   }
 }
 
-module "ecr_backend" {
-  source = "../../../modules/ecr/"
-  name = "backend"
-  environment = var.environment
+module "sns_email" {
+  source             = "../../../modules/sns"
+  region             = var.region
+  environment        = var.environment
+  profile            = var.profile
+  account_id         = data.terraform_remote_state.globals.outputs.account_id
   common_tags = var.common_tags
 }
+

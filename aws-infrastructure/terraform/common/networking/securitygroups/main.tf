@@ -11,16 +11,6 @@ terraform {
   }
 }
 
-data "terraform_remote_state" "globals" {
-  backend = "s3"
-  config = {
-    bucket = var.remote_state_bucket
-    dynamodb_table = "backend_tf_lock_remote_dynamo"
-    key = "globals.tfstate"
-    region = var.region
-  }
-}
-
 data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
