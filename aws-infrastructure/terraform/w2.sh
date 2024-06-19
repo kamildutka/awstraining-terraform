@@ -157,10 +157,10 @@ cd "${TARGET_PATH}"
 
 # Initialize Terraform
 terraform get
-terraform init -backend-config "bucket=${REMOTE_STATE_BUCKET}" -backend-config "key=${STATE_FILE_KEY}" -backend-config "region=${REGION}" -backend-config "profile=${PROFILE}" -var environment=${ENVIRONMENT} -var profile=${PROFILE} -var remote_state_bucket=${REMOTE_STATE_BUCKET} -var region=${REGION} -var shared_credentials_file="${SHARED_CREDENTIALS_FILE}" -lock=true
+terraform init -backend-config "bucket=${REMOTE_STATE_BUCKET}" -backend-config "key=${STATE_FILE_KEY}" -backend-config "region=${REGION}" -backend-config "profile=${PROFILE}" -var environment=${ENVIRONMENT} -var profile=${PROFILE} -var remote_state_bucket=${REMOTE_STATE_BUCKET} -var region=${REGION} -lock=true
 
 if [ "$COMMAND" != "init" ]
 then
   echo "Running terraform command: $COMMAND"
-  terraform ${COMMAND} -var remote_state_bucket=${REMOTE_STATE_BUCKET} -var region=${REGION} -var environment=${ENVIRONMENT} -var profile=${PROFILE} -var shared_credentials_file=${SHARED_CREDENTIALS_FILE} ${OPTIONS}
+  terraform ${COMMAND} -var remote_state_bucket=${REMOTE_STATE_BUCKET} -var region=${REGION} -var environment=${ENVIRONMENT} -var profile=${PROFILE} ${OPTIONS}
 fi

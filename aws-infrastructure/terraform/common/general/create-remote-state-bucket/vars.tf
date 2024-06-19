@@ -8,8 +8,4 @@ variable "remote_state_bucket" {
   description = "Name of the bucket"
 }
 
-variable "shared_credentials_file" {
-  description = "Path to cloud credentials"
-}
-
 variable "environment" {}
