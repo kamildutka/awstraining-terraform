@@ -3,7 +3,7 @@ output "hub" {
 }
 
 output "account_id" {
-  value = "<<ACCOUNT_ID>>"
+  value = "<<Set your account ID>>"
 }
 
 output "availability_zones" {

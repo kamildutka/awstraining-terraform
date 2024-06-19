@@ -4,9 +4,10 @@ provider "aws" {
   profile                 = var.profile
 }
 
-module "remote_state_bucket" {
-  source = "../../../modules/bucket"
-  name = var.remote_state_bucket
+terraform {
+  backend "s3" {
+    dynamodb_table = "backend_tf_lock_remote_dynamo"
+  }
 }
 
-
+# Environment specific constants are defined in outputs!

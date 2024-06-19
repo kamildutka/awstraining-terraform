@@ -1,13 +1,6 @@
-# Sets up an S3 bucket to store the remote states of all modules
 resource "aws_s3_bucket" "remote_state" {
-  bucket = var.remote_state_bucket
+  bucket = var.name
 
-  tags = merge(
-    var.common_tags,
-    {
-      "Name" = "remote_state_bucket"
-    }
-  )
 }
 
 resource "aws_s3_bucket_versioning" "remote_state_versioning" {
